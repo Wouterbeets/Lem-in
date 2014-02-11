@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:24 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 14:56:02 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/11 20:36:07 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ int		main()
 
 	room = ft_get_data();
 	print_list(&room);
+	calc_routes_needed(&room);
+//	init_routes(&room);
+//	simulate(&room);
 	return (1);
 }

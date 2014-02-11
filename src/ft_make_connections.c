@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 11:05:51 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 14:40:25 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/11 18:36:40 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	**get_tube(char	**line)
 			return (NULL);
 	}
 	tube = ft_strsplit(*line, '-');
-	if (tab_len(tube) != 2)
+	if (tab_len(tube) != 2 || ft_strcmp(tube[0], tube[1]) == 0)
 	{
 		while (*tube != '\0')
 			free(*tube++);

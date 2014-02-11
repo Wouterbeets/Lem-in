@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 09:19:25 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 15:33:59 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/11 20:32:16 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static t_room	*make_room(char **input, int start_end, int num_of_lem)
 	room->is_end = 0;
 	room->num_of_lem = 0;
 	room->connect = NULL;
+	room->backpack.next = NULL;
+	room->backpack.room = NULL;
 	if (start_end == 1)
 	{
 		room->is_start = 1;
@@ -59,6 +61,19 @@ static int	has_char(char **line, char c)
 	return (j);
 }
 
+static int	is_num(char *str)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i] != '\0')
+	{
+		if (!(str[i] <= '9' && str[i] >= '0'))
+			return (0);
+	}
+	return (1);
+}
+
 static t_room	*read_input(char **line, int num_of_lem)
 {
 	char	**input;
@@ -80,8 +95,11 @@ static t_room	*read_input(char **line, int num_of_lem)
 	if (has_char(line, ' ') == 2)
 	{
 		input = ft_strsplit(*line, ' ');
-		room = make_room(input, start_end, num_of_lem);
-		return (room);
+		if (is_num(input[1]) && is_num(input[2]))
+		{
+			room = make_room(input, start_end, num_of_lem);
+			return (room);
+		}
 	}
 	return (NULL);
 }
@@ -98,7 +116,7 @@ t_room		*ft_get_data(void)
 	start = NULL;
 	while (get_next_line(0, &line) > 0 && (!has_char(&line, '-')))
 	{
-		if (has_char(&line, ' ') == 0 && num_of_lem == 0)
+		if (has_char(&line, ' ') == 0 && num_of_lem == 0 && is_num(line))
 			num_of_lem = ft_atoi(line);
 		else if ((room = read_input(&line, num_of_lem)))
 			ft_add_to_room_end(&start, room);
