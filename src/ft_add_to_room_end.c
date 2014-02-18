@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 12:10:42 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 12:22:20 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/12 17:19:12 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	ft_add_to_room_end(t_room **start, t_room *new)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
+		new->next = NULL;
 	}
 }

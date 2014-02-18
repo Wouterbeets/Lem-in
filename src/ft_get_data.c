@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 09:19:25 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 20:32:16 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/14 08:59:44 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static t_room	*make_room(char **input, int start_end, int num_of_lem)
 	room->is_end = 0;
 	room->num_of_lem = 0;
 	room->connect = NULL;
-	room->backpack.next = NULL;
-	room->backpack.room = NULL;
+	room->backpack = NULL;
+	room->routes = NULL;
 	if (start_end == 1)
 	{
 		room->is_start = 1;
@@ -81,8 +81,11 @@ static t_room	*read_input(char **line, int num_of_lem)
 	int		start_end;
 
 	start_end = 0;
-	if ((*line)[0] == '#' && (*line)[1] != '#')
-		return (NULL);
+	while ((*line)[0] == '#' && (*line)[1] != '#')
+	{
+		get_next_line(0, line);
+		free(*line);
+	}
 	if (ft_strcmp(*line, "##start") == 0 || ft_strcmp(*line, "##end") == 0)
 	{
 		if ((*line)[2] == 's')

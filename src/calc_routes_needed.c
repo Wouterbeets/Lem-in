@@ -6,13 +6,14 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 20:36:24 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 20:46:00 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/18 14:09:26 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "libft.h"
 
 static t_room	*find_end(t_room **room)
 {
@@ -42,6 +43,21 @@ static t_room	*find_start(t_room **room)
 	return (NULL);
 }
 
+static int	len_list(t_connect *backpack)
+{
+	t_connect	*copy;
+	int			i;
+
+	i = 0;
+	copy = backpack;
+	while (copy)
+	{
+		copy = copy->next;
+		i++;
+	}
+	return (i);
+}
+
 void	calc_routes_needed(t_room **room)
 {
 	t_room	*start;
@@ -53,8 +69,8 @@ void	calc_routes_needed(t_room **room)
 	{
 		if ((end = find_end(room)))
 		{
-			start_num = num_of_connections(start);
-			end_num = num_of_connections(end);
+			start_num = len_list(start->connect);
+			end_num = len_list(end->connect);
 			if (start_num > end_num)
 				end->routes_needed = start_num;
 			else
@@ -63,5 +79,6 @@ void	calc_routes_needed(t_room **room)
 		}
 	}
 	ft_putstr("ERROR\n");
+	exit (-1);
 	exit (0);
 }

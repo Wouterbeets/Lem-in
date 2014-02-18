@@ -6,13 +6,27 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:24 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 20:36:07 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/18 18:31:15 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "libft.h"
+#include <unistd.h>
 
+static t_room	*find_end(t_room **room)
+{
+	t_room	*tmp;
+
+	tmp = *room;
+	while (tmp)
+	{
+		if (tmp->is_end)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
 void	print_list(t_room **room)
 {
 	t_room	*tmp;
@@ -40,15 +54,30 @@ void	print_list(t_room **room)
 		tmp = tmp->next;
 	}
 }
+static void	add_starts(t_room **room)
+{
+	t_room	*tmp;
 
+	tmp = *room;
+	while (tmp)
+	{
+		tmp->start_connections = tmp->connect;
+		tmp = tmp->next;
+	}
+}
 int		main()
 {
 	t_room		*room;
+	t_room		*end;
 
 	room = ft_get_data();
 	print_list(&room);
 	calc_routes_needed(&room);
-//	init_routes(&room);
+	add_starts(&room);
+	init_routes(&room);
+	end = find_end(&room);
+	ft_find_no_conflicts(&end->routes);
+	ft_find_best(&end->routes);
 //	simulate(&room);
 	return (1);
 }

@@ -6,30 +6,22 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 17:22:51 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 20:46:28 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/14 09:04:25 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "header.h"
+#include "libft.h"
 
 static void draw_from_start(t_room **start)
 {
-	t_room		*lem;
-	t_connect	backpack;
-	t_room		routlist;
+	t_room		*room;
+	t_backpack	*backpack;
 
-	lem = *start;
-	while (lem)
-	{
-		ft_move(lem, backpack);
-		lem->connect = lem->connect->next;
-	}
-}
-
-static void draw_from_end(t_room **end)
-{
-	
+	backpack = NULL;
+	room = *start;
+	ft_move_lem(room, backpack);
 }
 
 static t_room	*find_start(t_room **room)
@@ -49,7 +41,6 @@ static t_room	*find_start(t_room **room)
 void	init_routes(t_room **room)
 {
 	t_room	*start;
-	t_room	*end;
 
 	if ((start = find_start(room)))
 	{

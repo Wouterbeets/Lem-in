@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 12:21:55 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/11 15:39:49 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/13 10:54:38 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	ft_add_connections_end(t_connect **start, t_room *new)
 {
 	t_connect	*tmp;
 
-	if (*start == NULL)
+	if (*start == NULL || (*start)->room == NULL)
+	{
 		*start = new_connection(new);
+	}
 	else
 	{
 		tmp = *start;
