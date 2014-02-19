@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 19:04:37 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/16 13:10:14 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/19 16:03:42 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,16 +185,16 @@ static void	print_bp(t_backpack *backpack)
 
 static void	room_is_end(t_room *room, t_backpack *backpack)
 {
-	ft_putstr("**********************************************\n");
-	ft_putstr("**********************************************\n");
-	ft_putstr("**********************************************\n");
-	ft_putstr("**********************************************\n");
-	ft_putstr("**********************************************\n");
-	ft_putstr("in backpack :\n");
+//	ft_putstr("**********************************************\n");
+//	ft_putstr("**********************************************\n");
+//	ft_putstr("**********************************************\n");
+//	ft_putstr("**********************************************\n");
+//	ft_putstr("**********************************************\n");
+//	ft_putstr("in backpack :\n");
 	print_bp(backpack);
 	ft_putstr("\n");
 	t_routes	*tmp;
-	t_backpack	*route;
+//	t_backpack	*route;
 
 	tmp = room->routes;
 	if (room->routes == NULL)
@@ -211,30 +211,30 @@ static void	room_is_end(t_room *room, t_backpack *backpack)
 		tmp->next->route = copy_backpack(backpack);
 		tmp->next->next = NULL;
 	}
-	tmp = room->routes;
-	route = tmp->route;
-	while (tmp)
-	{
-		while (route->next)
-		{
-			ft_putstr(route->id);
-			ft_putstr(", ");
-			route = route->next;
-		}
-		tmp = tmp->next;
-		if (tmp)
-		{
-			route = tmp->route;
-		}
-		ft_putstr("\n");
-	}
+//	tmp = room->routes;
+//	route = tmp->route;
+//	while (tmp)
+//	{
+//		while (route->next)
+//		{
+//			ft_putstr(route->id);
+//			ft_putstr(", ");
+//			route = route->next;
+//		}
+//		tmp = tmp->next;
+//		if (tmp)
+//		{
+//			route = tmp->route;
+//		}
+//		ft_putstr("\n");
+//	}
 }
 
 void		ft_move_lem(t_room *room, t_backpack *backpack)
 {
-	ft_putstr("in room : ");
-	ft_putstr(room->id);
-	ft_putstr("\n");
+//	ft_putstr("in room : ");
+//	ft_putstr(room->id);
+//	ft_putstr("\n");
 	leave_backpack(room, backpack);
 	add_room_to_backpack(room, &backpack);
 	if (room->is_end)
@@ -247,24 +247,24 @@ void		ft_move_lem(t_room *room, t_backpack *backpack)
 		room->connect = room->start_connections;
 		while (room->connect)
 		{
-			ft_putstr("trying with room :");
-			ft_putstr(room->connect->room->id);
-			ft_putstr("\t :");
-			ft_putstr("backpack holds \t");
-			print_bp(backpack);
+//			ft_putstr("trying with room :");
+//			ft_putstr(room->connect->room->id);
+//			ft_putstr("\t :");
+//			ft_putstr("backpack holds \t");
+//			print_bp(backpack);
 			if ((!(is_in_backpack(room->connect->room->id, backpack))))
 			{
-				ft_putstr("\n :");
+//				ft_putstr("\n :");
 				ft_move_lem(room->connect->room, backpack);
-				ft_putstr("exited room\n room now = :");
-				ft_putstr(room->id);
-				ft_putstr("\n");
-				ft_putstr("backpack holds \t");
-				print_bp(backpack);
-				ft_putstr("deleted last item backpack holds \t");
+//				ft_putstr("exited room\n room now = :");
+//				ft_putstr(room->id);
+//				ft_putstr("\n");
+//				ft_putstr("backpack holds \t");
+//				print_bp(backpack);
+//				ft_putstr("deleted last item backpack holds \t");
 				del_last_item(backpack);
-				print_bp(backpack);
-				ft_putstr(" \n -------------------\n");
+//				print_bp(backpack);
+//				ft_putstr(" \n -------------------\n");
 			}
 			room->connect = room->connect->next;
 		}

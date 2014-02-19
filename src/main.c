@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:24 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/18 18:31:15 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/19 15:37:57 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		main()
 {
 	t_room		*room;
 	t_room		*end;
+	t_best		*best;
 
 	room = ft_get_data();
 	print_list(&room);
@@ -77,7 +78,12 @@ int		main()
 	init_routes(&room);
 	end = find_end(&room);
 	ft_find_no_conflicts(&end->routes);
-	ft_find_best(&end->routes);
+	best = ft_find_best(&end->routes);
+	ft_putstr("num_routes = ");
+	ft_putstr(ft_itoa(best->num_routes));
+	ft_putstr("len_tot = ");
+	ft_putstr(ft_itoa(best->len_tot));
+	ft_putstr("\n");
 //	simulate(&room);
 	return (1);
 }

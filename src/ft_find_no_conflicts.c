@@ -6,14 +6,14 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 14:15:19 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/18 19:50:38 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/19 15:39:47 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdlib.h>
 #include "libft.h"
-
+/*
 static void		print_bp(t_backpack *bp)
 {
 	t_backpack *tmp;
@@ -27,7 +27,7 @@ static void		print_bp(t_backpack *bp)
 	}
 	ft_putstr("\n");
 }
-
+*/
 static t_backpack	*conflict_route(t_backpack *r1, t_backpack *r2)
 {
 	t_backpack	*start_old;
@@ -114,7 +114,7 @@ static void		add_to_route(t_routes **lst, t_routes *new)
 		(*lst)->route = new->route;
 	}
 }
-
+/*
 static void	print(t_routes *lst)
 {
 	t_routes	*tmp;
@@ -142,7 +142,7 @@ static void	print(t_routes *lst)
 		tmp = tmp->next;
 	}
 }
-
+*/
 static t_routes		*conflict(t_routes *check, t_routes **start)
 {
 	t_routes	*to_check_start;
@@ -201,14 +201,14 @@ void	ft_find_no_conflicts(t_routes **start)
 	while (tmp)
 	{
 		conflict(tmp, start);
-		ft_putstr("route : ");
-		print_bp(tmp->route);
-		ft_putstr("is compatable with: ");
-		ft_putstr("\n----------------------------------");
-		print(tmp->compatable);
+//		ft_putstr("route : ");
+//		print_bp(tmp->route);
+//		ft_putstr("is compatable with: ");
+//		ft_putstr("\n----------------------------------");
+//		print(tmp->compatable);
 		tmp = tmp->next;
-		ft_putstr("\n");
-		ft_putstr("\n");
-		ft_putstr("\n");
+//		ft_putstr("\n");
+//		ft_putstr("\n");
+//		ft_putstr("\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:48 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/18 19:53:52 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/19 19:52:35 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_routes
 	struct s_routes		*next;
 	struct s_routes		*compatable;
 	struct s_routes		*checking;
+	int					taken;
 }					t_routes;
 
 typedef struct		s_best
@@ -40,6 +41,13 @@ typedef struct		s_best
 	struct s_routes	*routes;
 	int				num_routes;
 }					t_best;
+
+typedef struct		s_best_route
+{
+	t_backpack			*route;
+	struct s_best_route	*next;
+	int					route_len;
+}					t_best_route;
 
 typedef struct		s_room
 {
@@ -57,6 +65,14 @@ typedef struct		s_room
 	t_routes		*routes;
 }					t_room;
 
+typedef struct			s_lemmin
+{
+	char				*name;
+	struct s_lemmin		*next;
+	t_room				*room;
+	t_backpack			*route;
+	int					moves;
+}						t_lemmin;
 
 t_room	*ft_get_data();
 void	ft_add_to_room_end(t_room **start, t_room *new);
@@ -66,4 +82,5 @@ void	init_routes(t_room **room);
 void	calc_routes_needed(t_room **room);
 void		ft_move_lem(t_room *room, t_backpack *backpack);
 void	ft_find_no_conflicts(t_routes **start);
+t_best		*ft_find_best(t_routes **start);
 #endif /* HEADER_H */

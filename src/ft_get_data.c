@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 09:19:25 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/14 08:59:44 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/19 11:43:27 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ static t_room	*read_input(char **line, int num_of_lem)
 	start_end = 0;
 	while ((*line)[0] == '#' && (*line)[1] != '#')
 	{
-		get_next_line(0, line);
 		free(*line);
+		get_next_line(0, line);
 	}
 	if (ft_strcmp(*line, "##start") == 0 || ft_strcmp(*line, "##end") == 0)
 	{
