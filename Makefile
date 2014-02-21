@@ -6,7 +6,7 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/02/19 19:53:18 by wbeets           ###   ########.fr        #
+#    Updated: 2014/02/21 02:14:55 by wbeets           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ FILES	= main.c\
 		  ft_find_no_conflicts.c\
 		  ft_find_best.c\
 		  ft_create_lemmins.c\
+		  ft_move_lemmins.c\
+		  ft_simulate.c\
 
 SRC		= $(addprefix src/, $(FILES))
 OBJ		= $(SRC:src/%.c=.obj/%.o)

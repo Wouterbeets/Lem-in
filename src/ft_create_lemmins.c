@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/19 19:28:43 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/19 20:32:46 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/21 03:13:19 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ t_lemmin	*ft_create_lemmins(t_room **rooms)
 
 	i = 1;
 	start = *rooms;
-	init_lemmin(lemmin, i, start);
+	init_lemmin(&lemmin, i, start);
 	lem_start = lemmin;
 	i++;
-	while (i < start->num_of_lem)
+	while (i <= start->num_of_lem)
 	{
-		init_lemmin(lemmin->next, i, start);
+		init_lemmin(&lemmin->next, i, start);
 		lemmin = lemmin->next;
+		i++;
 	}
 	return (lem_start);
 }

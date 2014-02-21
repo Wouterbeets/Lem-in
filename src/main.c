@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:24 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/19 15:37:57 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/21 02:55:18 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int		main()
 	ft_putstr("len_tot = ");
 	ft_putstr(ft_itoa(best->len_tot));
 	ft_putstr("\n");
-//	simulate(&room);
+	ft_simulate(&room, best);
 	return (1);
 }

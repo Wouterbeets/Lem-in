@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/10 15:51:48 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/19 19:52:35 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/21 01:24:37 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ int		ft_make_connections(t_room **room, char **line);
 void	init_routes(t_room **room);
 void	calc_routes_needed(t_room **room);
 void		ft_move_lem(t_room *room, t_backpack *backpack);
+void	ft_move_lemmins(t_room **rooms, t_best_route *best, t_lemmin *lemmin);
 void	ft_find_no_conflicts(t_routes **start);
 t_best		*ft_find_best(t_routes **start);
+void	ft_simulate(t_room **rooms, t_best *best);
+t_lemmin	*ft_create_lemmins(t_room **rooms);
 #endif /* HEADER_H */

@@ -6,14 +6,29 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/19 17:30:03 by wbeets            #+#    #+#             */
-/*   Updated: 2014/02/19 20:29:32 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/02/21 02:56:22 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdlib.h>
 
-static int	len_bp(t_backpack *backpack)
+static t_room	*find_start(t_room **room)
+{
+	t_room	*tmp;
+
+	tmp = *room;
+	while (tmp)
+	{
+		if (tmp->is_start)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+
+int	len_bp(t_backpack *backpack)
 {
 	t_backpack	*tmp;
 	int			i;
@@ -28,7 +43,7 @@ static int	len_bp(t_backpack *backpack)
 	return (i);
 }
 
-static int		all_taken(t_routes *checking)
+int		all_taken(t_routes *checking)
 {
 	t_routes	*tmp;
 	tmp = checking;
@@ -42,12 +57,12 @@ static int		all_taken(t_routes *checking)
 	return (1);
 }
 
-static void	add_to_list(t_best_route **start, t_backpack *bp, int len)
+void	add_to_list(t_best_route **start, t_backpack *bp, int len)
 {
 	t_best_route	*tmp;
 
 	tmp = *start;
-	if (tmp)
+	if (tmp->route)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
@@ -58,14 +73,13 @@ static void	add_to_list(t_best_route **start, t_backpack *bp, int len)
 	}
 	else
 	{
-		tmp = (t_best_route *)malloc(sizeof(t_best_route));
 		tmp->route = bp;
 		tmp->route_len = len;
 		tmp->next = NULL;
 	}
 }
 
-static void	define_len_routes(t_best *best, t_best_route *sort)
+void	define_len_routes(t_best *best, t_best_route *sort)
 {
 	t_routes	*checking;
 	int			i;
@@ -73,7 +87,7 @@ static void	define_len_routes(t_best *best, t_best_route *sort)
 	t_routes	*smallest;
 
 	i = 0;
-	j = 0;
+	j = 9999999;
 	checking = best->routes->checking;
 	while (checking)
 	{
@@ -92,15 +106,18 @@ static void	define_len_routes(t_best *best, t_best_route *sort)
 					smallest->taken = 0;
 				j = i;
 				smallest = checking;
+				smallest->taken = 1;
 			}
 			checking = checking->next;
 		}
 		checking = best->routes->checking;
 		add_to_list(&sort, smallest->route, j);
+		smallest = NULL;
+		j = 9999999;
 	}
 }
 
-static void	init_sort(t_best_route **sort)
+void	init_sort(t_best_route **sort)
 {
 	(*sort) = (t_best_route *)malloc(sizeof(t_best_route));
 	(*sort)->next = NULL;
@@ -112,10 +129,12 @@ void	ft_simulate(t_room **rooms, t_best *best)
 {
 	t_best_route	*sort;
 	t_lemmin		*lemmin;
+	t_room			*start;
 
+	start = find_start(rooms);
 	sort = NULL;
 	init_sort(&sort);
 	define_len_routes(best, sort);
-	ft_create_lemmins(rooms);
+	lemmin = ft_create_lemmins(&start);
 	ft_move_lemmins(rooms, sort, lemmin);
 }
